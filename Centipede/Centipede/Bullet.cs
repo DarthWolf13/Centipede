@@ -10,7 +10,7 @@ namespace Centipede
     class Bullet : SpriteGameObject
     {
         Vector2 StartPosition;
-        Vector2 FirePosition;
+        public Vector2 FirePosition;
         private int speed = 200;
 
         public Bullet() : base("spr_bullet")
@@ -34,14 +34,5 @@ namespace Centipede
             this.Velocity = new Vector2(0, -speed);
         }
 
-        public override void HandleInput(InputHelper inputHelper)
-        {
-            base.HandleInput(inputHelper);
-
-            if (inputHelper.IsKeyDown(Keys.Space))
-            {
-                Fire();
-            }
-        }
     }
 }
