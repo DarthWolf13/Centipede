@@ -75,6 +75,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bullet.cs" />
     <Compile Include="Centipede.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayingState.cs" />
