@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Centipede
     class Player : SpriteGameObject
     {
         Vector2 StartPosition;
+        private int speed = 400;
 
         public Player() : base("spr_player")
         {
@@ -22,6 +24,22 @@ namespace Centipede
             base.Reset();
 
             this.Position = StartPosition;
+        }
+
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            base.HandleInput(inputHelper);
+
+            if (inputHelper.IsKeyDown(Keys.Left) || this.position.X + this.sprite.Width > 800)
+                this.Velocity = new Vector2(-speed, 0);
+            else if (inputHelper.IsKeyDown(Keys.Right) || this.position.X < 0)
+                this.Velocity = new Vector2(speed, 0);
+            else if (inputHelper.IsKeyDown(Keys.Up) || this.position.X < 0)
+                this.Velocity = new Vector2(0, -speed);
+            else if (inputHelper.IsKeyDown(Keys.Down) || this.position.X < 0)
+                this.Velocity = new Vector2(0, speed);
+            else this.Velocity = Vector2.Zero;
+
         }
     }
 }
