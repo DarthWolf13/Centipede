@@ -11,15 +11,23 @@ namespace Centipede
     {
         Player player;
         Bullet bullet;
+        GameObjectList snakeSegment;
 
         public PlayingState()
         {
             player = new Player();
             bullet = new Bullet();
+            snakeSegment = new GameObjectList();
 
             this.Add(new SpriteGameObject("spr_background"));           
             this.Add(bullet);
             this.Add(player);
+            this.Add(snakeSegment);
+
+            for (int i = 0; i < 9; i++)
+            {
+                this.snakeSegment.Add(new SnakeSegment(i * 64, 0));
+            }
         }
 
         public override void HandleInput(InputHelper inputHelper)

@@ -11,9 +11,9 @@ namespace Centipede
         Vector2 StartPosition;
         private int speed = 200;
 
-        public SnakeSegment() : base("spr_snakebody")
+        public SnakeSegment(int x, int y) : base("spr_snakebody")
         {
-            StartPosition = new Vector2(0, 0);
+            StartPosition = new Vector2(x, y);
             this.Velocity = new Vector2(speed, 0);
         }
 
@@ -30,6 +30,13 @@ namespace Centipede
                 this.position = new Vector2(Centipede.Screen.X - this.sprite.Width, position.Y + 32);
                 this.Velocity *= -1;
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            Bounce();
         }
     }
 }
