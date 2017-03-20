@@ -28,7 +28,7 @@ namespace Centipede
             SetFullScreen(false);
 
             gameStateManager.AddGameState("PlayingState", new PlayingState());
-
+            gameStateManager.SwitchTo("PlayingState");
         }
 
     }
