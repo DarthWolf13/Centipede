@@ -10,8 +10,9 @@ namespace Centipede
     {
         Vector2 StartPosition;
         private int speed = 200;
+        public static int snakeLenght = 10;
 
-        public SnakeSegment(int x, int y) : base("spr_snakebody")
+        public SnakeSegment(int x, int y, string assetname) : base(assetname)
         {
             StartPosition = new Vector2(x, y);
             this.position = StartPosition;
