@@ -14,6 +14,7 @@ namespace Centipede
         public SnakeSegment(int x, int y) : base("spr_snakebody")
         {
             StartPosition = new Vector2(x, y);
+            this.position = StartPosition;
             this.Velocity = new Vector2(speed, 0);
         }
 

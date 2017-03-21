@@ -24,9 +24,9 @@ namespace Centipede
             this.Add(player);
             this.Add(snakeSegment);
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
-                this.snakeSegment.Add(new SnakeSegment(i * 64, 0));
+                this.snakeSegment.Add(new SnakeSegment(i * 32, 0));
             }
         }
 
