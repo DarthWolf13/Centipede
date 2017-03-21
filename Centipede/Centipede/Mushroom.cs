@@ -12,7 +12,7 @@ namespace Centipede
         int randomY = GameEnvironment.Random.Next(25, 450);
         public static int mushAmount = 20;
 
-        public Mushroom() : base("spr_mushroom")
+        public Mushroom(int x, int y) : base("spr_mushroom")
         {
             this.Position = new Vector2(randomX, randomY);
         }
