@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Bullet.cs" />
     <Compile Include="Centipede.cs" />
+    <Compile Include="Mushroom.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayingState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
