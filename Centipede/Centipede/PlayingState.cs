@@ -11,32 +11,32 @@ namespace Centipede
     {
         Player player;
         Bullet bullet;
-        GameObjectList snakeSegment;
+        GameObjectList snakeSegments;
         GameObjectList mushrooms;
 
         public PlayingState()
         {
             player = new Player();
             bullet = new Bullet();
-            snakeSegment = new GameObjectList();
+            snakeSegments = new GameObjectList();
             mushrooms = new GameObjectList();
 
             this.Add(new SpriteGameObject("spr_background"));           
             this.Add(bullet);
             this.Add(player);
-            this.Add(snakeSegment);
+            this.Add(snakeSegments);
             this.Add(mushrooms);
 
             for (int i = 0; i < SnakeSegment.snakeLenght; i++)
             {
                 if (i < SnakeSegment.snakeLenght - 1)
                 {
-                    this.snakeSegment.Add(new SnakeSegment(i * 32, 0, "spr_snakebody"));
+                    this.snakeSegments.Add(new SnakeSegment(i * 32, 0, "spr_snakebody"));
                 }
 
                 if (i == SnakeSegment.snakeLenght - 1)
                 {
-                    this.snakeSegment.Add(new SnakeSegment(i * 32, 0, "spr_snakehead"));
+                    this.snakeSegments.Add(new SnakeSegment(i * 32, 0, "spr_snakehead"));
                 }
             }
 
@@ -61,7 +61,7 @@ namespace Centipede
         {
             base.Update(gameTime);
 
-            foreach (SnakeSegment snakeSegment in snakeSegment.Objects)
+            foreach (SnakeSegment snakeSegment in snakeSegments.Objects)
             {
                 foreach (Mushroom mushroom in mushrooms.Objects){
 
@@ -79,6 +79,21 @@ namespace Centipede
                     mushrooms.Remove(mushroom);
                     break;
                 }                
+            }
+
+            foreach (Mushroom mushroom in mushrooms.Objects)
+            {
+                foreach (SnakeSegment snakeSegment in snakeSegments.Objects)
+                {
+                    if (bullet.CollidesWith(snakeSegment))
+                    {
+                        bullet.Reset();
+                        snakeSegments.Remove(snakeSegment);
+                        break;
+                    }
+                    
+                }
+                
             }
         }
     }
