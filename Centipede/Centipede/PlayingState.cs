@@ -78,8 +78,7 @@ namespace Centipede
                     bullet.Reset();
                     mushrooms.Remove(mushroom);
                     break;
-                }
-                
+                }                
             }
         }
     }
