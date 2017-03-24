@@ -12,20 +12,20 @@ namespace Centipede
         Player player;
         Bullet bullet;
         GameObjectList snakeSegment;
-        GameObjectList mushroom;
+        GameObjectList mushrooms;
 
         public PlayingState()
         {
             player = new Player();
             bullet = new Bullet();
             snakeSegment = new GameObjectList();
-            mushroom = new GameObjectList();
+            mushrooms = new GameObjectList();
 
             this.Add(new SpriteGameObject("spr_background"));           
             this.Add(bullet);
             this.Add(player);
             this.Add(snakeSegment);
-            this.Add(mushroom);
+            this.Add(mushrooms);
 
             for (int i = 0; i < SnakeSegment.snakeLenght; i++)
             {
@@ -42,7 +42,7 @@ namespace Centipede
 
             for (int i = 0; i < Mushroom.mushAmount; i++)
             {
-                this.mushroom.Add(new Mushroom(0, 0));
+                this.mushrooms.Add(new Mushroom(0, 0));
             }
         }
 
@@ -63,12 +63,23 @@ namespace Centipede
 
             foreach (SnakeSegment snakeSegment in snakeSegment.Objects)
             {
-                foreach (Mushroom mushroom in mushroom.Objects){
+                foreach (Mushroom mushroom in mushrooms.Objects){
 
                     if (snakeSegment.CollidesWith(mushroom)){
                         snakeSegment.Bounce();
                     }
                 }
+            }
+
+            foreach (Mushroom mushroom in mushrooms.Objects)
+            {
+                if (bullet.CollidesWith(mushroom))
+                {
+                    bullet.Reset();
+                    mushrooms.Remove(mushroom);
+                    break;
+                }
+                
             }
         }
     }
