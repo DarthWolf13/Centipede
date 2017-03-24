@@ -56,5 +56,20 @@ namespace Centipede
                 bullet.Fire();
             }
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            foreach (SnakeSegment snakeSegment in snakeSegment.Objects)
+            {
+                foreach (Mushroom mushroom in mushroom.Objects){
+
+                    if (snakeSegment.CollidesWith(mushroom)){
+                        snakeSegment.Bounce();
+                    }
+                }
+            }
+        }
     }
 }

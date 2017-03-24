@@ -20,25 +20,19 @@ namespace Centipede
         }
 
         public void Bounce()
-        {
-            if (this.position.X < 0)
-            {
-                this.position = new Vector2(0, position.Y + 32);
-                this.Velocity *= -1;
-            }
-
-            if (this.position.X + this.sprite.Width > Centipede.Screen.X)
-            {
-                this.position = new Vector2(Centipede.Screen.X - this.sprite.Width, position.Y + 32);
-                this.Velocity *= -1;
-            }
+        {                        
+            this.position = new Vector2(this.position.X, position.Y + 32);
+            this.Velocity *= -1;            
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            Bounce();
+            if (this.position.X < 0 || this.position.X + this.sprite.Width > Centipede.Screen.X)
+            {
+                Bounce();
+            }
         }
     }
 }
